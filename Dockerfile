@@ -69,8 +69,11 @@ RUN cd /tmp/ffmpeg-${FFMPEG_VERSION} && \
 
 # Cleanup.
 RUN rm -rf /var/cache/* /tmp/*
+RUN mkdir -p /tmp/hls
 
 ADD nginx.conf /opt/nginx/nginx.conf
+ADD start.sh /start.sh
+
 ADD static /www/static
 
-CMD ["/opt/nginx/sbin/nginx"]
+CMD ["/start.sh"]
